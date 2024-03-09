@@ -13,6 +13,12 @@ This Python script allows you to control your mouse cursor using your keyboard. 
 - Press the right mouse button by pressing the 'r' key.
 - Exit the script by pressing the Esc key.
 
+## Note
+- This script is only tested on Linux. It may not work on Windows or macOS.
+- This script will supress your keyboard input. So, you can't use your keyboard while using this script. by pressing the Esc key you can exit the script.
+- This script is not perfect. It may have some bugs. If you find any bugs, please report them.
+- This script has to re-open in order to be used again after exiting. that's why it's better to use it with sxhkd or similar tools to start it with a keybinding.
+
 ## Use it with sxhkd
 1. Download the executable file from the releases page.
 2. You can use the executable file with sxhkd to start it with a keybinding.
@@ -27,6 +33,7 @@ super + m #change this to your desired keybinding
 ### Requirements
 - Python 3
 - pynput library
+- pyinstaller library
 
 ### Installation 
 
