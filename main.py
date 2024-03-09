@@ -9,7 +9,6 @@ step_size = 1
 
 # Define the speed of the mouse
 speed = 0.0025
-scroll_speed = 0.2
 
 key_state = {
     Key.up: False,
