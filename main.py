@@ -118,10 +118,3 @@ while True:
     mouse_controller.move(dx, dy)
     mouse_controller.scroll(mx, my)
     time.sleep(speed)
-
-    '''
-    if key == KeyCode.from_char('w'):  # Scroll up
-        mouse_controller.scroll(0, 1)
-    if key == KeyCode.from_char('s'):  # Scroll down
-        mouse_controller.scroll(0, -1)
-    '''
