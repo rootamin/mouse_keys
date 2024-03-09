@@ -21,8 +21,12 @@ This Python script allows you to control your mouse cursor using your keyboard. 
 
 ## Use it with sxhkd
 1. Download the executable file from the releases page.
-2. You can use the executable file with sxhkd to start it with a keybinding.
-3. Add the following line to your `sxhkdrc` file:
+2. Make the file executable:
+```bash
+chmod +x mouse_keys-x.run
+```
+3. You can use the executable file with sxhkd to start it with a keybinding.
+4. Add the following line to your `sxhkdrc` file:
 ```bash
 super + m #change this to your desired keybinding
     /path/to/mouse_keys-x.run #change this to the path of the executable file
