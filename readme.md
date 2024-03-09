@@ -25,7 +25,7 @@ This Python script allows you to control your mouse cursor using your keyboard. 
 3. Add the following line to your `sxhkdrc` file:
 ```bash
 super + m #change this to your desired keybinding
-    /path/to/main #change this to the path of the executable file
+    /path/to/mouse_keys-x.run #change this to the path of the executable file
 ```
 
 ## Build it yourself
@@ -40,12 +40,12 @@ super + m #change this to your desired keybinding
 1. Clone this repository:
 ```bash
 git clone https://github.com/rootamin/mouse_keys.git
+cd mouse_keys
 ```
 
 2. Install the required libraries using pip (a virtual environment is recommended):
 ```bash
-pip install pynput
-pip install pyinstaller
+pip install pynput, pyinstaller
 ```
 3. Modify the main.py file to change the cursor speed.
 ```python
@@ -55,4 +55,4 @@ speed = 10 # Change this value to change the cursor speed
 ```bash
 pyinstaller --onefile main.py
 ```
-5. The executable file will be in the `dist` folder (main).
+5. The executable file will be in the `dist` folder as `main`.
