@@ -9,6 +9,7 @@ step_size = 1
 
 # Define the speed of the mouse
 speed = 0.0025
+scroll_speed = 0.2
 
 key_state = {
     Key.up: False,
@@ -24,10 +25,14 @@ key_state = {
 
     Key.shift: False,
     Key.ctrl: False,
-    Key.space: False,
 
+    Key.space: False,
     KeyCode.from_char('r'): False,
     KeyCode.from_char('e'): False,
+    KeyCode.from_char('w'): False,
+    KeyCode.from_char('s'): False,
+    KeyCode.from_char('a'): False,
+    KeyCode.from_char('d'): False,
 
     Key.esc: False
 }
@@ -85,6 +90,17 @@ while True:
     else:
         dy = 0
 
+    # mouse scroll
+    mx, my = 0, 0
+    if key_state[KeyCode.from_char('w')]:
+        my += step_size
+    if key_state[KeyCode.from_char('s')]:
+        my -= step_size
+    if key_state[KeyCode.from_char('a')]:
+        mx -= step_size
+    if key_state[KeyCode.from_char('d')]:
+        mx += step_size
+
     if key_state[Key.space]:
         mouse_controller.press(mouse.Button.middle)
     elif key_state[KeyCode.from_char('e')]:
@@ -100,4 +116,12 @@ while True:
         mouse_controller.release(mouse.Button.right)
 
     mouse_controller.move(dx, dy)
+    mouse_controller.scroll(mx, my)
     time.sleep(speed)
+
+    '''
+    if key == KeyCode.from_char('w'):  # Scroll up
+        mouse_controller.scroll(0, 1)
+    if key == KeyCode.from_char('s'):  # Scroll down
+        mouse_controller.scroll(0, -1)
+    '''
