@@ -2,13 +2,35 @@ from pynput import keyboard, mouse
 from pynput.keyboard import Key, KeyCode
 import time
 import os
+import configparser
+
+import os.path
 
 mouse_controller = mouse.Controller()
 
 step_size = 1
 
-# Define the speed of the mouse
-speed = 0.0025
+# Read config file
+config = configparser.ConfigParser()
+config_file = os.path.expanduser("~/.config/mouse_keys/config")
+if os.path.isfile(config_file):
+    config.read(config_file)
+    speed = float(config.get("MouseKeys", "speed", fallback="0.0025"))
+    shift_speed = float(config.get("MouseKeys", "shift_speed", fallback="4"))
+    ctrl_speed = float(config.get("MouseKeys", "ctrl_speed", fallback="0.25"))
+else:
+    speed = 0.0025 # smaller is faster
+    shift_speed = 4
+    ctrl_speed = 0.25
+    # Generate config file with default values
+    config["MouseKeys"] = {
+        "speed": str(speed),
+        "shift_speed": str(shift_speed),
+        "ctrl_speed": str(ctrl_speed)
+    }
+    os.makedirs(os.path.dirname(config_file), exist_ok=True)
+    with open(config_file, "w") as file:
+        config.write(file)
 
 key_state = {
     Key.up: False,
@@ -36,18 +58,15 @@ key_state = {
     Key.esc: False
 }
 
-
 def on_press(key):
     if key in key_state:
         key_state[key] = True
     if key == Key.esc:  # If Esc key is pressed, exit the script
         os._exit(0)
 
-
 def on_release(key):
     if key in key_state:
         key_state[key] = False
-
 
 listener = keyboard.Listener(on_press=on_press, on_release=on_release, suppress=True)
 listener.start()
@@ -68,11 +87,11 @@ while True:
 
     # Adjust the cursor speed size based on the state of the shift and ctrl keys
     if key_state[Key.shift]:
-        dx *= 4
-        dy *= 4
+        dx *= shift_speed
+        dy *= shift_speed
     elif key_state[Key.ctrl]:
-        dx /= 4
-        dy /= 4
+        dx *= ctrl_speed
+        dy *= ctrl_speed
 
     accumulated_dx += dx
     accumulated_dy += dy
