@@ -31,6 +31,17 @@ chmod +x mouse_keys-x.run
 super + m #change this to your desired keybinding
     /path/to/mouse_keys-x.run #change this to the path of the executable file
 ```
+5. Reload the sxhkd configuration:
+```bash
+pkill -USR1 -x sxhkd
+```
+6. You can change cursor speed from a config file located in `~/.config/mouse_keys/config` file. The default value is 0.0025 You can change it to your desired value. default generated config:
+```bash
+[MouseKeys]
+speed = 0.0025 # lower is faster
+shift_speed = 4 # higher is faster
+ctrl_speed = 0.25 # higher is faster
+```
 
 ## Build it yourself
 - This script has good cursor speed for 1920x1080 resolution. If you have a different resolution, you can change the cursor speed by changing the `speed` variable in the `main.py` file. so for that you have to build it yourself.
